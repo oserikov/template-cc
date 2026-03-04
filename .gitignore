@@ -1,0 +1,7 @@
+.direnv/
+.venv/
+__pycache__/
+*.egg-info/
+.env
+.cursor/
+.ninja_log

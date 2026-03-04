@@ -1,0 +1,26 @@
+[project]
+name = "my-project"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "ruff>=0.12.5",
+  "ty>=0.0.1a18",
+]
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "F",
+  "UP",
+  "B",
+  "SIM",
+  "I",
+]
+ignore = [
+  "E501",
+]
