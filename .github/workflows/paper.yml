@@ -1,0 +1,45 @@
+name: Paper
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  paper:
+    name: Build paper
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    env:
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          ref: ${{ github.head_ref || github.ref }}
+
+      - uses: PalisadeResearch/ci-action@master
+        with:
+          github_access_token: ${{ github.token }}
+
+      - run: ninja paper
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paper-typst
+          path: paper-typst/main.pdf
+
+      - name: Upload paper to release
+        if: github.ref == 'refs/heads/main'
+        run: |
+          gh release delete --cleanup-tag -y latest || true
+          gh release create latest paper-typst/main.pdf --title "Latest paper"

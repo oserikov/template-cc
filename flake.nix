@@ -19,7 +19,9 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             git
+            ninja
             uv
+            typst
             nil
             nixfmt-rfc-style
           ];

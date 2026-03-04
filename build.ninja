@@ -1,0 +1,9 @@
+rule typst_compile
+  command = typst compile --ignore-system-fonts $in $out
+  description = Building $out with typst
+
+build paper-typst/main.pdf: typst_compile paper-typst/main.typ
+
+build paper: phony paper-typst/main.pdf
+
+default paper

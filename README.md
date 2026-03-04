@@ -53,12 +53,16 @@ pre-commit install && pre-commit run --all-files
 cd my-project       # automatically loads environment via direnv
 uv run my_script.py # run Python scripts
 uv add requests     # add dependencies
+ninja               # builds the paper (paper-typst/main.typ → paper-typst/main.pdf)
 git commit           # checks format, lints, and type checks via pre-commit
 ```
 
 ### Files to know
 
-- `flake.nix` — system dependencies (uv, git, nix tools)
+- `flake.nix` — system dependencies (uv, typst, ninja, nix tools)
 - `pyproject.toml` — Python dependencies and ruff config
 - `.envrc` — direnv config that activates nix + uv
 - `.pre-commit-config.yaml` — commit hooks (ruff, ty, nixfmt, uv-lock)
+- `build.ninja` — build targets (`ninja paper` compiles the Typst paper)
+- `paper-typst/main.typ` — paper source
+- `.github/workflows/paper.yml` — CI: builds paper, uploads as release on main
