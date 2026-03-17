@@ -6,3 +6,6 @@ __pycache__/
 .cursor/
 .ninja_log
 paper-typst/main.pdf
+flake.lock
+uv.lock
+
