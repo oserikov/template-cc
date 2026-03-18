@@ -1,6 +1,6 @@
 # template-cc
 
-A template repository for Python projects with nix/direnv/uv.
+A template repository for Python projects with nix/direnv/uv and containerized Claude Code experiments.
 
 ## Development
 
@@ -66,3 +66,27 @@ git commit           # checks format, lints, and type checks via pre-commit
 - `build.ninja` — build targets (`ninja paper` compiles the Typst paper)
 - `paper-typst/main.typ` — paper source
 - `.github/workflows/paper.yml` — CI: builds paper, uploads as release on main
+- `experiment/run_experiment.sh` — containerized experiment runner (devcontainers + Claude Code agents)
+- `experiment/.devcontainer/` — Dockerfile, firewall, permission bypass for agent containers
+- `experiment/AGENT_PROMPT.md.template` — prompt template with `{{TASK_ID}}` and `{{CONDITION}}` placeholders
+
+### Running experiments
+
+```bash
+# 1. Define tasks (one ID per line)
+echo -e "task1\ntask2\ntask3" > experiment/tasks.txt
+
+# 2. Place data per condition
+mkdir -p experiment/data/my_condition
+cp my_resources.txt experiment/data/my_condition/
+
+# 3. Customize the prompt template
+vim experiment/AGENT_PROMPT.md.template
+
+# 4. Run
+./experiment/run_experiment.sh --conditions my_condition --budget 50
+
+# 5. Results are in experiment/results/my_condition/*.jsonl
+```
+
+Each agent runs in a firewalled Docker container (no internet) with full tool access (bash, Python, file I/O). Agents use Claude Opus 4.6 with `--dangerously-skip-permissions`. See `CLAUDE.md` for details and gotchas.

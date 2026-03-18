@@ -1,0 +1,28 @@
+{
+  "name": "experiment-agent",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "TZ": "${localEnv:TZ:UTC}",
+      "CLAUDE_CODE_VERSION": "latest"
+    }
+  },
+  "runArgs": [
+    "--privileged"
+  ],
+  "initializeCommand": "mkdir -p \"${localEnv:TRACE_DIR:-/tmp/experiment-traces}/projects\" \"${localEnv:TRACE_DIR:-/tmp/experiment-traces}/debug\"",
+  "remoteUser": "node",
+  "mounts": [
+    "source=${localEnv:TRACE_DIR:-/tmp/experiment-traces}/projects,target=/home/node/.claude/projects,type=bind",
+    "source=${localEnv:TRACE_DIR:-/tmp/experiment-traces}/debug,target=/home/node/.claude/debug,type=bind"
+  ],
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/node/.claude",
+    "DEVCONTAINER": "true",
+    "EXPERIMENT_NAME": "${localEnv:EXPERIMENT_NAME:unnamed}"
+  },
+  "workspaceMount": "",
+  "workspaceFolder": "/workspace",
+  "postStartCommand": "bash /usr/local/bin/ensure-claude-perm-skip.sh && mkdir -p /home/node/.claude/debug && jq -nc --arg experiment \"$EXPERIMENT_NAME\" --arg started \"$(date -Is)\" '{experiment:$experiment,started:$started}' > /home/node/.claude/debug/run_manifest.json",
+  "waitFor": "postStartCommand"
+}

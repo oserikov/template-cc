@@ -9,3 +9,9 @@ paper-typst/main.pdf
 flake.lock
 uv.lock
 
+# Experiment runtime artifacts
+experiment/logs/
+experiment/traces/
+experiment/results/
+experiment/state_*.json
+

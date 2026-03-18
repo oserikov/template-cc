@@ -1,0 +1,27 @@
+# Task: {{TASK_ID}}
+
+## Condition: {{CONDITION}}
+
+## Available Resources
+
+Your working directory `/workspace/data/` contains the resource files for this task.
+
+## Time Budget
+
+You have a strict turn budget. Follow this approach:
+
+**Phase 1 (turns 1-8): Research.** Explore the data. Search, read, and analyze.
+
+**Phase 2 (turns 9-12): Draft.** Write your best answer to `/workspace/result.json`.
+A rough answer is better than no answer.
+
+**Phase 3 (remaining turns): Refine.** Improve your answer if possible. Overwrite
+`/workspace/result.json` with each improvement.
+
+**RULE: You MUST write `/workspace/result.json` by turn 12.** If you haven't
+written it by then, stop what you are doing and write your best guess immediately.
+
+## Output
+
+Write your result to `/workspace/result.json` as a JSON object. The schema
+depends on your task — include whatever fields are relevant.
