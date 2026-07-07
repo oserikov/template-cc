@@ -1,4 +1,4 @@
-# CLAUDE.md
+# CLAUDE.md or AGENTS.md whatever you call it.
 
 Ensure `direnv` is active before working — run `direnv allow` if the shell env looks wrong.
 Use `uv` for Python dependency management; run scripts with `uv run <script>`.
