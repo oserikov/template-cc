@@ -15,7 +15,7 @@
 )]
 
 #set document(title: "Title")
-#set page(margin: (top: 2.5cm, bottom: 2.5cm, left: page-left-margin, right: page-right-margin))
+#set page(margin: (top: 2.501cm, bottom: 2.5cm, left: page-left-margin, right: page-right-margin))
 #set text(size: 11pt)
 
 #align(center)[
