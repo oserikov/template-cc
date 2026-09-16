@@ -5,8 +5,6 @@ __pycache__/
 .env
 .cursor/
 .ninja_log
-flake.lock
-uv.lock
 
 # Experiment runtime artifacts
 experiment/logs/
