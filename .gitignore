@@ -5,6 +5,7 @@ __pycache__/
 .env
 .cursor/
 .ninja_log
+paper-typst/main.pdf
 
 # Experiment runtime artifacts
 experiment/logs/
