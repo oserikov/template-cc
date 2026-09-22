@@ -5,8 +5,7 @@ Use `uv` for Python dependency management; run scripts with `uv run <script>`.
 Run `ninja` from the repo root to compile the Typst paper (`paper-typst/main.typ` → `paper-typst/main.pdf`).
 The paper lives in `paper-typst/main.typ`; rebuild with `ninja` after editing to check it compiles.
 `paper-typst/main.pdf` is gitignored — it's a rebuildable artifact, not committed. Don't add it back
-to source control: a tracked compiled PDF collides with todoai-watch's worktree-merge machinery,
-which treats an uncommitted local rebuild in the main tree as a conflict and aborts the merge.
+to source control: a tracked compiled PDF tends to conflict with users' workflow.
 Use `ruff` for linting/formatting Python code.
 Do not commit `.direnv/`, `.venv/`, `.cursor/`, `.ninja_log`, or `paper-typst/main.pdf`.
 
