@@ -8,6 +8,7 @@ dependencies = []
 
 [dependency-groups]
 dev = [
+  "pyyaml>=6.0",
   "ruff>=0.12.5",
   "ty>=0.0.1a18",
 ]
